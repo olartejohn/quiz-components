@@ -6,6 +6,8 @@ class QuestionPointsSetter extends LitElement {
 		};
 	}
 	render() {
-		return html``;
+		return html`<a href="https://google.ca/">Hello World</a>`;
 	}
 }
+
+customElements.define('d2l-question-points-setter', QuestionPointsSetter);
