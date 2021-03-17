@@ -4,13 +4,19 @@ import '@brightspace-ui/core/components/list/list-item.js';
 import '@brightspace-ui/core/components/list/list-item-content.js';
 import '@brightspace-ui/core/components/inputs/input-number.js';
 import '@brightspace-ui/core/components/colors/colors.js';
+import 'd2l-activities/components/d2l-activity-name/d2l-activity-name';
 
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { heading4Styles, labelStyles } from '@brightspace-ui/core/components/typography/styles.js';
+import { ActivityUsageCollectionEntity } from 'siren-sdk/src/activities/ActivityUsageCollectionEntity.js';
+import { ActivityUsageEntity } from 'siren-sdk/src/activities/ActivityUsageEntity';
 import { BaseMixin } from '../mixins/base-mixin';
 import { QuizServiceFactory } from '../services/quizServiceFactory';
+import { EntityMixinLit } from 'siren-sdk/src/mixin/entity-mixin-lit';
+import { performSirenAction } from 'siren-sdk/src/es6/SirenAction';
+import { UserActivityUsageEntity } from 'siren-sdk/src/enrollments/UserActivityUsageEntity';
 
-class ActivityQuestionPoints extends BaseMixin(LitElement) {
+class ActivityQuestionPoints extends EntityMixinLit(BaseMixin(LitElement)) {
 	static get properties() {
 		return {
 			updateDisabled: {
@@ -68,7 +74,8 @@ class ActivityQuestionPoints extends BaseMixin(LitElement) {
 
 	constructor() {
 		super();
-		this.updateDisabled = false;
+		this._items = [];
+		this._setEntityType(ActivityUsageCollectionEntity);
 
 		this.quizService = QuizServiceFactory.getQuizService();
 	}
@@ -77,6 +84,28 @@ class ActivityQuestionPoints extends BaseMixin(LitElement) {
 		super.connectedCallback();
 
 		this.questions = await this.quizService.getQuestions();
+	}
+
+	set _entity(entity) {
+		if (this._entityHasChanged(entity)) {
+			this._onActivityUsageCollectionChanged(entity);
+			super._entity = entity;
+			this.requestUpdate();
+		}
+	}
+
+	_onActivityUsageCollectionChanged(collection) {
+		this._items = [];
+		collection.onItemsChange((item, index) => {
+			item.onActivityUsageChange((usage) => {
+				this._onActivityCollectionItemChanged(item, usage, index);
+			});
+		});
+	}
+
+	_onActivityCollectionItemChanged(collectionItem, activityUsage, index) {
+		this._items[index] = { collectionItem, activityUsage };
+		this.requestUpdate();
 	}
 
 	_validation() {
@@ -108,27 +137,30 @@ class ActivityQuestionPoints extends BaseMixin(LitElement) {
 		console.log('Cancelling update');
 	}
 
-	_renderQuestion(question) {
+	_renderUsage(item) {
+		const points = item.collectionItem._entity.properties.points;
+		const id = item.collectionItem._entity.properties.id;
+		const secondary = 123;
 		return html`
 		<d2l-list-item>
 			<d2l-list-item-content>
 				<div>
-					${ question.title }
+					<d2l-activity-name href="${item.activityUsage.userActivityUsageHref()}" .token="${this.token}"></d2l-activity-name>
 				</div>
 				<div slot="secondary">
-					${ question.secondary }
+					${ secondary }
 				</div>
 			</d2l-list-item-content>
 			<div class="activity_list__points_input" slot="actions">
-				<label for="points_input_${question.id}" class="points_input__label d2l-label-text">
+				<label for="points_input_${id}" class="points_input__label d2l-label-text">
 					${this.localize('inputLabelPoints')}
 				</label>
 				<d2l-input-number
-					id="points_input_${question.id}"
+					id="points_input_${id}"
 					label=${this.localize('inputLabelPoints')}
-					value=${ question.points }
+					value=${ points }
 					@change=${this._validation}
-					min=0
+					min = 0
 					min-exclusive
 					required
 					label-hidden>
@@ -137,7 +169,6 @@ class ActivityQuestionPoints extends BaseMixin(LitElement) {
 		</d2l-list-item>
 		`;
 	}
-
 	render() {
 		return html`
 			<div class="main_body">
@@ -151,7 +182,7 @@ class ActivityQuestionPoints extends BaseMixin(LitElement) {
 				</div>
 				<div class="main_body__activity_list">
 					<d2l-list separators="between">
-						${ this.questions?.map(question => this._renderQuestion(question)) }
+						${ this._items && this._items.map(usage => this._renderUsage(usage)) }
 					</d2l-list>
 				</div>
 			</div>
@@ -172,6 +203,7 @@ class ActivityQuestionPoints extends BaseMixin(LitElement) {
 			</div>
 		`;
 	}
+
 }
 
 customElements.define('d2l-activity-question-points', ActivityQuestionPoints);

@@ -27,12 +27,6 @@
             "collection"
           ],
           "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection"
-        },
-        {
-          "rel": [
-            "next"
-          ],
-          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection/2"
         }
       ]
     },
@@ -63,12 +57,6 @@
             "collection"
           ],
           "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection"
-        },
-        {
-          "rel": [
-            "prev"
-          ],
-          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection/1"
         }
       ]
     }
