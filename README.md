@@ -1,4 +1,5 @@
 # quiz-components
+[![Release Badge](https://github.com/Brightspace/quiz-components/workflows/release/badge.svg)](https://github.com/Brightspace/quiz-components/actions?query=workflow%3Arelease)
 
 Contains various BSI components used by quizzing.
 
