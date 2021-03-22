@@ -1,7 +1,7 @@
 {
 	"rel":["https://assignments.api.brightspace.com/rels/external"],
 	"properties":{
-    "name":"Something about the Cells",
+    "name":"Cell Biology and miosis",
     "description": "H5P Question"
 	}
 }

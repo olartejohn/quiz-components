@@ -19,7 +19,7 @@
           "rel": [
             "https://activities.api.brightspace.com/rels/activity-usage"
           ],
-          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_qquestionversion_2~2/usages/6609"
+          "href": "base/data/activity-usage.json"
         },
         {
           "rel": [
@@ -36,7 +36,7 @@
       ],
       "properties": {
         "id": "2",
-        "points": 0
+        "points": 20
       },
       "links": [
         {
@@ -49,7 +49,67 @@
           "rel": [
             "https://activities.api.brightspace.com/rels/activity-usage"
           ],
-          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_qsection_2/usages/6609"
+          "href": "base/data/activity-usage-2.json"
+        },
+        {
+          "rel": [
+            "up",
+            "collection"
+          ],
+          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection"
+        }
+      ]
+    },
+    {
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "id": "3",
+        "points": 100
+      },
+      "links": [
+        {
+          "rel": [
+            "self"
+          ],
+          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection/3"
+        },
+        {
+          "rel": [
+            "https://activities.api.brightspace.com/rels/activity-usage"
+          ],
+          "href": "base/data/activity-usage-3.json"
+        },
+        {
+          "rel": [
+            "up",
+            "collection"
+          ],
+          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection"
+        }
+      ]
+    },
+    {
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "id": "4",
+        "points": 100
+      },
+      "links": [
+        {
+          "rel": [
+            "self"
+          ],
+          "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection/4"
+        },
+        {
+          "rel": [
+            "https://activities.api.brightspace.com/rels/activity-usage"
+          ],
+          "href": "base/data/activity-usage-4.json"
         },
         {
           "rel": [
@@ -66,14 +126,7 @@
       "rel": [
         "self"
       ],
-      "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609/collection"
-    },
-    {
-      "rel": [
-        "https://activities.api.brightspace.com/rels/activity-usage",
-        "up"
-      ],
-      "href": "https://dfdb7e15-7355-4554-a9a5-dbf6b8aee6e7.activities.api.proddev.d2l/activities/6606_51000_2/usages/6609"
+      "href": "data/activity-collection.json"
     }
   ]
 }

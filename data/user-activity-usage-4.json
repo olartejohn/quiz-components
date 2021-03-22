@@ -4,7 +4,7 @@
 	"links":[
     {
 			"rel":["https://api.brightspace.com/rels/assignment"],
-			"href":"base/data/activity.json"
+			"href":"base/data/activity-4.json"
 		}
 	]
 }

@@ -15,6 +15,7 @@
     "quiz-components.serge.json"
   ],
   "devDependencies": {
+    "@brightspace-hmc/foundation-components": "git://github.com/BrightspaceHypermediaComponents/foundation-components.git",
     "@open-wc/testing": "^2",
     "@open-wc/testing-karma": "^3",
     "babel-eslint": "^10",
