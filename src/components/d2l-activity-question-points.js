@@ -4,17 +4,16 @@ import '@brightspace-ui/core/components/list/list-item.js';
 import '@brightspace-ui/core/components/list/list-item-content.js';
 import '@brightspace-ui/core/components/inputs/input-number.js';
 import '@brightspace-ui/core/components/colors/colors.js';
-import 'd2l-activities/components/d2l-activity-name/d2l-activity-name';
+import '@brightspace-hmc/foundation-components/components/activity/name/d2l-activity-name';
+import '@brightspace-hmc/foundation-components/components/activity/type/d2l-activity-type';
 
-import { css, html, LitElement } from 'lit-element/lit-element.js';
+import { css, LitElement } from 'lit-element/lit-element.js';
+import { html } from '@brightspace-hmc/foundation-engine/framework/lit/hypermedia-components.js';
 import { heading4Styles, labelStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { ActivityUsageCollectionEntity } from 'siren-sdk/src/activities/ActivityUsageCollectionEntity.js';
-import { ActivityUsageEntity } from 'siren-sdk/src/activities/ActivityUsageEntity';
 import { BaseMixin } from '../mixins/base-mixin';
 import { QuizServiceFactory } from '../services/quizServiceFactory';
 import { EntityMixinLit } from 'siren-sdk/src/mixin/entity-mixin-lit';
-import { performSirenAction } from 'siren-sdk/src/es6/SirenAction';
-import { UserActivityUsageEntity } from 'siren-sdk/src/enrollments/UserActivityUsageEntity';
 
 class ActivityQuestionPoints extends EntityMixinLit(BaseMixin(LitElement)) {
 	static get properties() {
@@ -90,7 +89,6 @@ class ActivityQuestionPoints extends EntityMixinLit(BaseMixin(LitElement)) {
 		if (this._entityHasChanged(entity)) {
 			this._onActivityUsageCollectionChanged(entity);
 			super._entity = entity;
-			this.requestUpdate();
 		}
 	}
 
@@ -140,7 +138,6 @@ class ActivityQuestionPoints extends EntityMixinLit(BaseMixin(LitElement)) {
 	_renderUsage(item) {
 		const points = item.collectionItem._entity.properties.points;
 		const id = item.collectionItem._entity.properties.id;
-		const secondary = 123;
 		return html`
 		<d2l-list-item>
 			<d2l-list-item-content>
@@ -148,7 +145,7 @@ class ActivityQuestionPoints extends EntityMixinLit(BaseMixin(LitElement)) {
 					<d2l-activity-name href="${item.activityUsage.userActivityUsageHref()}" .token="${this.token}"></d2l-activity-name>
 				</div>
 				<div slot="secondary">
-					${ secondary }
+				<d2l-activity-type href="${item.activityUsage.userActivityUsageHref()}" .token="${this.token}"></d2l-activity-type>
 				</div>
 			</d2l-list-item-content>
 			<div class="activity_list__points_input" slot="actions">

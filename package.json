@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@brightspace-hmc/foundation-components": "git://github.com/BrightspaceHypermediaComponents/foundation-components.git",
     "@brightspace-ui/core": "^1.118.2",
-    "d2l-activities": "github:BrightspaceHypermediaComponents/activities",
     "lit-element": "^2.4.0",
     "siren-sdk": "github:BrightspaceHypermediaComponents/siren-sdk#semver:^1"
   },
@@ -15,7 +15,6 @@
     "quiz-components.serge.json"
   ],
   "devDependencies": {
-    "@brightspace-hmc/foundation-components": "git://github.com/BrightspaceHypermediaComponents/foundation-components.git",
     "@open-wc/testing": "^2",
     "@open-wc/testing-karma": "^3",
     "babel-eslint": "^10",
